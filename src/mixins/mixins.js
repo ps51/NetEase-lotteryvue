@@ -16,7 +16,7 @@ var mixin = {
     
     methods:{
         pushToVie(){
-            console.log(this)
+         
         },
         loadData(url,method,res){
           
@@ -37,7 +37,7 @@ var mixin = {
                 对象，对象里是都有path，是否有name属性
             
             */
-           console.log(params)
+         
            if (item instanceof String) {
                this.$router.push({path:item})
                console.log(item)
@@ -45,7 +45,7 @@ var mixin = {
             if (item.path) {
                 this.$router.push({path:item.path})
             }
-            console.log(params   )
+           
             if (item.name) {
                 this.$router.push({name:item.name,params:params})
             }

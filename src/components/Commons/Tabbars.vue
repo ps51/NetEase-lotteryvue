@@ -38,7 +38,7 @@ export default {
         },
         methods:{
             pushToVie(path,index,ev){
-              console.log(index);
+            
               this.$store.commit('SELECTEINDEX',{selectedIndex:index});
               localStorage.setItem('SELECTEINDEX',index);
 

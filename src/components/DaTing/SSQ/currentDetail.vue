@@ -89,14 +89,14 @@ export default {
         }
     },
     created(){
-        console.log(this.$route)
+     
         this.$store.commit('ssqSelectedIndex',{ssqSelectedIndex:0});
       localStorage.setItem('ssqSelectedIndex',0);
        
        
     },
     activated(){
-        console.log('当前期次组件显示');
+        
          if (this.$route.params.item) {
              this.currentItem = this.$route.params.item;
         }else{
@@ -104,7 +104,7 @@ export default {
         }
     },
     deactivated(){
-        console.log('当前期次组件消失')
+      
     }
 }
 </script>

@@ -21,6 +21,7 @@ import mixins from '@/mixins/mixins'
 import '@/assets/dist/css/bootstrap.css'
 import Vuex from 'vuex';
 import store from './vuex/Store'
+import '@/drectives/random'
 Vue.use(Vuex);
 
 Vue.mixin(mixins);

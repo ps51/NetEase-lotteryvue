@@ -9,22 +9,50 @@
            <span>
                <i class="fa fa-download"></i>
            </span>
-          
-   
-    
-       </div>
+         </div>
+         <Focus :focus="focus"></Focus>
+         <ul>
+             <li v-for="(item,key) in balls" :key="key" @click="pushToView(item,key)"
+             
+               
+                      :style="key == $store.state.ssqSelectedIndex?{borderBottom:'2px solid red'}:{border:'none'}"
+             >
+                 {{item.title}}
+             </li>
+         </ul>
+         <router-view></router-view>
     </div>
 </template>
 <script>
 import Focus from '@/components/Commons/Focus'
 
 export default {
-    componens:{Focus},
+    components:{Focus},
     data(){
         return {
-            
+            focus:[],
+            balls:[
+                {name:'redBall',title:'红球走势'},
+                {name:'blueBall',title:'篮球走势'}
+            ]
+        }
+    },
+    created(){
+        this.loadData('/api/focus','get','focus');
+        this.$store.dispatch('SetSSQData');
+        //点击高亮
+         var ssqSelectedIndex = localStorage.getItem('ssqSelectedIndex');
+        this.$store.commit('ssqSelectedIndex',{ssqSelectedIndex:ssqSelectedIndex});
+    },
+     methods:{
+             pushToView(item,key){
+            this.$store.commit('ssqSelectedIndex',{ssqSelectedIndex:key});
+            localStorage.setItem('ssqSelectedIndex',key);
+            this.$router.push({name:item.name,params:{item:this.$store.state.currentSSQ}});
         }
     }
+    
+
 }
 </script>
 <style lang="scss" scpoed>
@@ -34,7 +62,8 @@ export default {
             bottom: 0;
             left: 0;
             right: 0;
-            background: cornflowerblue;
+            background: white;
+            overflow-y: scroll;
             z-index: 10;
             .topBar{
                 width: 100%;
@@ -56,6 +85,19 @@ export default {
                       i{
                     margin:7px;
                 }
+                }
+            }
+            ul{
+                width: 100%;
+                height: 44px;
+                background: white;
+                display: flex;
+                flex-direction: row;
+                li{
+                    flex: 1;
+                    text-align: center;
+                    line-height: 44px;
+                    height: 44px;
                 }
             }
     }

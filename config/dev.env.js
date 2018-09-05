@@ -5,5 +5,5 @@ const prodEnv = require('./prod.env')
 module.exports = merge(prodEnv, {
   NODE_ENV: '"development"',
   // 服务器地址
-  API_ROOT:'"http://localhost:8888"'
+  API_ROOT:'"http://192.168.2.181:8888"'
 })
